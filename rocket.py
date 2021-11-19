@@ -44,7 +44,7 @@ class MyRocket():
     def update(self):
         """[Atualiza a direção e a posição do foguete de acordo com as Flags
         de movimento]"""
-        
+
         # Armazena a velocidade do foguete na variável speed
         speed = self.mr_settings.rocket_speed_factor
 
