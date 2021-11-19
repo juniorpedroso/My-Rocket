@@ -21,7 +21,7 @@ class MyRocket():
 
         # Carrega a imagem do foguete e obtém seu rect
         self.image = pygame.image.load(
-            position_rocket[self.position])
+            position_rocket[self.position])     # Carrega a imagem do foguete
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 

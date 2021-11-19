@@ -5,7 +5,6 @@ from rocket import MyRocket
 import game_functions as gf
 
 
-
 def run_game():
     # Inicializa e cria um objeto para a tela
     pygame.init()
@@ -17,19 +16,14 @@ def run_game():
     # Cria um foguete
     rocket = MyRocket(mr_settings, screen)
 
-
     # Inicia o laço principal da aplicação
     while True:
 
         # Observa eventos de teclado e mouse
         gf.check_events(rocket)
-        
-        # Redesenha a tela a cada passagem pelo laço
-        screen.fill(mr_settings.bg_color)
-        rocket.blitme()
 
-        # Deixa a tela mais recente visível
-        pygame.display.flip()
+        # Chama a função que atualiza a tela
+        gf.update_screen(mr_settings, screen, rocket)
 
 
 run_game()
