@@ -2,6 +2,7 @@ import sys
 
 import pygame
 
+
 def check_keydown_events(event, rocket):
     """[Responde a pressionamentos de teclas]
     """
@@ -12,6 +13,7 @@ def check_keydown_events(event, rocket):
         rocket.change_left = True
     elif event.key == pygame.K_UP:
         rocket.moving_forward = True
+
 
 def check_keyup_events(event, rocket):
     """[Responde a soltura de teclas]
@@ -35,7 +37,7 @@ def check_events(rocket):
 
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event, rocket)
-        
+
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, rocket)
 

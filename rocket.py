@@ -44,6 +44,11 @@ class MyRocket():
     def update(self):
         """[Atualiza a direção e a posição do foguete de acordo com as Flags
         de movimento]"""
+        
+        # Armazena a velocidade do foguete na variável speed
+        speed = self.mr_settings.rocket_speed_factor
+
+        # Direção do foguete para a direita
         if self.change_right:
             if self.direction == 7:
                 self.direction = 0
@@ -51,9 +56,10 @@ class MyRocket():
                 self.direction += 1
             self.image = pygame.image.load(
                 direction_rocket[self.direction])
-            # Um temporizador para diminuir a velocidade da direção    
-            sleep(0.1)  
+            # Um temporizador para diminuir a velocidade da direção
+            sleep(0.1)
 
+        # Direção do foguete para a esquerda
         if self.change_left:
             if self.direction == 0:
                 self.direction = 7
@@ -61,37 +67,41 @@ class MyRocket():
                 self.direction -= 1
             self.image = pygame.image.load(
                 direction_rocket[self.direction])
-            # Um temporizador para diminuir a velocidade da direção    
+            # Um temporizador para diminuir a velocidade da direção
             sleep(0.1)
 
+        # Movimento do Foguete de acordo com o ângulo da direção
         if self.moving_forward:
             if self.direction == 0:     # 000
-                self.rect.bottom -= 1
+                self.centerY -= speed
 
             elif self.direction == 1:   # 045
-                self.rect.centerx += 1
-                self.rect.bottom -= 1
+                self.centerX += speed
+                self.centerY -= speed
 
             elif self.direction == 2:   # 090
-                self.rect.centerx += 1
+                self.centerX += speed
 
             elif self.direction == 3:   # 135
-                self.rect.centerx += 1
-                self.rect.bottom += 1
+                self.centerX += speed
+                self.centerY += speed
 
             elif self.direction == 4:   # 180
-                self.rect.bottom += 1
+                self.centerY += speed
 
             elif self.direction == 5:   # 225
-                self.rect.centerx -= 1
-                self.rect.bottom += 1
+                self.centerX -= speed
+                self.centerY += speed
 
             elif self.direction == 6:   # 270
-                self.rect.centerx -= 1
+                self.centerX -= speed
 
             elif self.direction == 7:   # 315
-                self.rect.centerx -= 1
-                self.rect.bottom -= 1
+                self.centerX -= speed
+                self.centerY -= speed
+
+            self.rect.centerx = self.centerX
+            self.rect.bottom = self.centerY
 
     def blitme(self):
         """[Desenha a imagem em sua posição atual]
