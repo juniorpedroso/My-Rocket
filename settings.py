@@ -2,7 +2,8 @@ vermelho = (255, 0, 0)
 verde = (0, 255, 0)
 azul = (0, 0, 255)
 cinza = (230, 230, 230)
-cinzaescuro = (112, 112, 112)
+cinzaescuro = (128, 128, 128)
+
 
 class Settings():
     """[Uma classe para armazenar todas as configurações de 
@@ -17,4 +18,5 @@ class Settings():
         self.screen_height = 400
         self.bg_color = cinzaescuro
 
-     
+        # Configurações do foguete
+        self.rocket_speed_factor = 0.5

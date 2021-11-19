@@ -2,6 +2,27 @@ import sys
 
 import pygame
 
+def check_keydown_events(event, rocket):
+    """[Responde a pressionamentos de teclas]
+    """
+    # Pressionando a tecla o movimento inicia
+    if event.key == pygame.K_RIGHT:
+        rocket.change_right = True
+    elif event.key == pygame.K_LEFT:
+        rocket.change_left = True
+    elif event.key == pygame.K_UP:
+        rocket.moving_forward = True
+
+def check_keyup_events(event, rocket):
+    """[Responde a soltura de teclas]
+    """
+    if event.key == pygame.K_RIGHT:
+        rocket.change_right = False
+    elif event.key == pygame.K_LEFT:
+        rocket.change_left = False
+    elif event.key == pygame.K_UP:
+        rocket.moving_forward = False
+
 
 def check_events(rocket):
     """[Responde a eventos de pressionamento de teclas e mouse]
@@ -12,13 +33,11 @@ def check_events(rocket):
         if event.type == pygame.QUIT:
             sys.exit()
 
-        elif event.type == pygame.KEYDOWN:  # Verifica se uma tecla poi pressionada
-            if event.key == pygame.K_RIGHT:
-                rocket.position_right()
-
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                rocket.position_left()
+            check_keydown_events(event, rocket)
+        
+        elif event.type == pygame.KEYUP:
+            check_keyup_events(event, rocket)
 
 
 def update_screen(mr_settings, screen, rocket):

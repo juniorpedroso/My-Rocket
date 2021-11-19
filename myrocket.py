@@ -22,6 +22,9 @@ def run_game():
         # Observa eventos de teclado e mouse
         gf.check_events(rocket)
 
+        # Checa se alguma tecla está sendo pressionada
+        rocket.update()
+
         # Chama a função que atualiza a tela
         gf.update_screen(mr_settings, screen, rocket)
 
