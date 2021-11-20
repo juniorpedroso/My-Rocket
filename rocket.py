@@ -41,12 +41,56 @@ class MyRocket():
         self.change_left = False
         self.moving_forward = False
 
+    def check_edge(self):
+        # Checa se o foguete atingiu a borda superior da tela
+        if self.rect.top == self.screen_rect.top:
+            if self.direction == 0:
+                self.moving_forward = False
+            elif self.direction == 1:
+                self.direction = 2
+            elif self.direction == 7:
+                self.direction = 6
+
+        # Checa se o foguete atingiu a borda inferior da tela
+        if self.rect.bottom == self.screen_rect.bottom:
+            if self.direction == 4:
+                self.moving_forward = False
+            elif self.direction == 5:
+                self.direction = 6
+            elif self.direction == 3:
+                self.direction = 2
+
+        # Checa se o foguete atingiu a borda direita da tela
+        if self.rect.right == self.screen_rect.right:
+            if self.direction == 2:
+                self.moving_forward = False
+            elif self.direction == 3:
+                self.direction = 4
+            elif self.direction == 1:
+                self.direction = 0
+
+        # Checa se o foguete atingiu a borda esquerda da tela
+        if self.rect.left == self.screen_rect.left:
+            if self.direction == 6:
+                self.moving_forward = False
+            elif self.direction == 7:
+                self.direction = 0
+            elif self.direction == 5:
+                self.direction = 4
+
+        # Atualiza a imagem do foguete com a nova direção
+        self.image = pygame.image.load(
+            direction_rocket[self.direction])
+
     def update(self):
         """[Atualiza a direção e a posição do foguete de acordo com as Flags
         de movimento]"""
 
-        # Armazena a velocidade do foguete na variável speed
-        speed = self.mr_settings.rocket_speed_factor
+        # Armazena a velocidade do foguete na variável speed_factor
+        speed_factor = self.mr_settings.rocket_speed_factor
+
+        # Checa se o foguete atingiu a borda
+        self.check_edge()
 
         # Direção do foguete para a direita
         if self.change_right:
@@ -73,32 +117,32 @@ class MyRocket():
         # Movimento do Foguete de acordo com o ângulo da direção
         if self.moving_forward:
             if self.direction == 0:     # 000
-                self.centerY -= speed
+                self.centerY -= speed_factor
 
             elif self.direction == 1:   # 045
-                self.centerX += speed
-                self.centerY -= speed
+                self.centerX += speed_factor
+                self.centerY -= speed_factor
 
             elif self.direction == 2:   # 090
-                self.centerX += speed
+                self.centerX += speed_factor
 
             elif self.direction == 3:   # 135
-                self.centerX += speed
-                self.centerY += speed
+                self.centerX += speed_factor
+                self.centerY += speed_factor
 
             elif self.direction == 4:   # 180
-                self.centerY += speed
+                self.centerY += speed_factor
 
             elif self.direction == 5:   # 225
-                self.centerX -= speed
-                self.centerY += speed
+                self.centerX -= speed_factor
+                self.centerY += speed_factor
 
             elif self.direction == 6:   # 270
-                self.centerX -= speed
+                self.centerX -= speed_factor
 
             elif self.direction == 7:   # 315
-                self.centerX -= speed
-                self.centerY -= speed
+                self.centerX -= speed_factor
+                self.centerY -= speed_factor
 
             self.rect.centerx = self.centerX
             self.rect.bottom = self.centerY
