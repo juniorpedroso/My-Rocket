@@ -50,6 +50,7 @@ class MyRocket():
 
         # Direção do foguete para a direita
         if self.change_right:
+            sleep(0.1)
             if self.direction == 7:
                 self.direction = 0
             else:
@@ -57,10 +58,10 @@ class MyRocket():
             self.image = pygame.image.load(
                 direction_rocket[self.direction])
             # Um temporizador para diminuir a velocidade da direção
-            sleep(0.1)
 
         # Direção do foguete para a esquerda
         if self.change_left:
+            sleep(0.1)
             if self.direction == 0:
                 self.direction = 7
             else:
@@ -68,7 +69,6 @@ class MyRocket():
             self.image = pygame.image.load(
                 direction_rocket[self.direction])
             # Um temporizador para diminuir a velocidade da direção
-            sleep(0.1)
 
         # Movimento do Foguete de acordo com o ângulo da direção
         if self.moving_forward:
