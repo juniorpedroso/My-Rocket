@@ -42,12 +42,17 @@ def check_events(rocket):
             check_keyup_events(event, rocket)
 
 
-def update_screen(mr_settings, screen, rocket):
+def update_screen(mr_settings, screen, rocket, star, background):
     # Redesenha a tela a cada passagem pelo laço
-    screen.fill(mr_settings.bg_color)
+    # screen.fill(mr_settings.bg_color)
+    screen.fill((0, 0, 0))
+    # BackGround Image
+    screen.blit(background, (0, 0))
 
     # Exibe a espaçonave
     rocket.blitme()
+    # Exibe a estrela
+    star.blitme()
 
     # Deixa a tela mais recente visível
     pygame.display.flip()
